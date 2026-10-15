@@ -2,7 +2,7 @@
 import { useState } from "react";
 import type { RuleSet } from "@/lib/types";
 import { salesTax } from "@/lib/engine";
-import { rs2 } from "@/lib/format";
+import { rs2, pkr2 } from "@/lib/format";
 import Seg from "./Seg";
 import FySelect from "./FySelect";
 import ShareButtons from "./ShareButtons";
@@ -32,9 +32,9 @@ export default function SalesCalculator({ rulesets }: { rulesets: RuleSet[] }) {
         <ShareButtons
           title={`🧾 My GST Breakdown (FY ${rules.fy})`}
           lines={[
-            `▫️ Price before tax: ${rs2(res.base)}`,
-            `▫️ GST (${rateStr}%): ${rs2(res.tax)}`,
-            `▫️ Total payable: ${rs2(res.total)}`,
+            `▫️ Price before tax: ${pkr2(res.base)}`,
+            `▫️ GST (${rateStr}%): ${pkr2(res.tax)}`,
+            `▫️ Total payable: ${pkr2(res.total)}`,
           ]}
           url="https://tax-pak.vercel.app/sales-tax-calculator"
         />

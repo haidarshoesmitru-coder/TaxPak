@@ -87,6 +87,26 @@ test("Property gains: old regime plot held 7 years = 0%", () => {
   assert.equal(r.tax, 0);
 });
 
+test("Property gains: old regime constructed held 1.5 years = 10% (Division VIII)", () => {
+  const pg = fy202627.propertyGains;
+  const r = propertyGainsTax({ buy: 10_000_000, sell: 12_000_000, acquiredISO: "2020-01-01", propType: "constructed", holdingYears: 1.5, atl: true }, pg, fy202627.salaried);
+  assert.equal(r.rate, 10);
+  assert.equal(r.tax, 200_000);
+});
+
+test("Property gains: old regime flat held 1.5 years = 7.5% (Division VIII)", () => {
+  const pg = fy202627.propertyGains;
+  const r = propertyGainsTax({ buy: 10_000_000, sell: 12_000_000, acquiredISO: "2020-01-01", propType: "flat", holdingYears: 1.5, atl: true }, pg, fy202627.salaried);
+  assert.equal(r.rate, 7.5);
+  assert.equal(r.tax, 150_000);
+});
+
+test("Property gains: old regime boundary — exactly 1 year stays in the 15% band", () => {
+  const pg = fy202627.propertyGains;
+  const r = propertyGainsTax({ buy: 10_000_000, sell: 12_000_000, acquiredISO: "2020-01-01", propType: "plot", holdingYears: 1, atl: true }, pg, fy202627.salaried);
+  assert.equal(r.rate, 15);
+});
+
 test("Property gains: no gain means no tax", () => {
   const pg = fy202627.propertyGains;
   const r = propertyGainsTax({ buy: 15_000_000, sell: 14_000_000, acquiredISO: "2025-01-01", propType: "flat", holdingYears: 1, atl: true }, pg, fy202627.salaried);

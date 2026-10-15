@@ -143,7 +143,7 @@ export function propertyGainsTax(inp: PropertyGainsInput, pg: PropertyGains, sal
     return { gain, rate, tax: (gain * rate) / 100, regime: `Non-ATL: normal slab rates on the gain, minimum ${pg.flatAtlPct}%` as const };
   }
   const table = pg.oldRegime.find((t) => t.type === inp.propType)!;
-  const slab = table.slabs.find((s) => s.upToYears === null || inp.holdingYears < s.upToYears)!;
+  const slab = table.slabs.find((s) => s.upToYears === null || inp.holdingYears <= s.upToYears)!;
   return { gain, rate: slab.pct, tax: (gain * slab.pct) / 100, regime: `Old holding-period regime (${table.label}, held ${inp.holdingYears} yrs)` as const };
 }
 

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import type { RuleSet } from "@/lib/types";
 import { incomeTax } from "@/lib/engine";
-import { rs, pct } from "@/lib/format";
+import { rs, pct, pkr } from "@/lib/format";
 import Seg from "./Seg";
 import FySelect from "./FySelect";
 import ShareButtons from "./ShareButtons";
@@ -36,9 +36,9 @@ export default function IncomeCalculator({ rulesets }: { rulesets: RuleSet[] }) 
         <ShareButtons
           title={`📊 My Salary Tax Breakdown (FY ${rules.fy})`}
           lines={[
-            `▫️ ${mode === "monthly" ? "Monthly" : "Annual"} Salary: ${rs(mode === "monthly" ? n : n / 12)}`,
-            `▫️ ${mode === "monthly" ? "Monthly" : "Annual"} Income Tax: ${rs(mode === "monthly" ? res.monthly : res.total)}`,
-            `▫️ Net Take-Home (${mode === "monthly" ? "monthly" : "annual"}): ${rs(mode === "monthly" ? res.takeHomeMonthly : res.takeHomeMonthly * 12)}`,
+            `▫️ ${mode === "monthly" ? "Monthly" : "Annual"} Salary: ${pkr(mode === "monthly" ? n : n / 12)}`,
+            `▫️ ${mode === "monthly" ? "Monthly" : "Annual"} Income Tax: ${pkr(mode === "monthly" ? res.monthly : res.total)}`,
+            `▫️ Net Take-Home (${mode === "monthly" ? "monthly" : "annual"}): ${pkr(mode === "monthly" ? res.takeHomeMonthly : res.takeHomeMonthly * 12)}`,
           ]}
           url="https://tax-pak.vercel.app/income-tax-calculator"
         />
