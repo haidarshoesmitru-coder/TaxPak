@@ -1,0 +1,8 @@
+// NEXT BUDGET CHECKLIST (copy this file to lib/rules/fy2027-28.ts and rename the .txt away)
+// 1. Copy lib/rules/fy2026-27.ts, change fy / taxYear / effectiveFrom / actName.
+// 2. Replace slabs with the notified First Schedule table. `fixed` is the official "Rs X +" figure.
+// 3. Run `npm test`. validateSlabs() fails if any `fixed` does not match the cumulative maths.
+// 4. Set verifiedAt to today ONLY after checking the gazette. Mark each source/change verified: true/false honestly.
+// 5. Import it in lib/rules/index.ts and add it to LOCAL_RULES. The FY dropdown, slab table, FAQ,
+//    sitemap date and budget-changes page all update by themselves.
+// Alternative without redeploy: insert a row into the Supabase tax_rules table (see supabase/migrations).
