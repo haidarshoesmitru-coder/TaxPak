@@ -16,7 +16,7 @@ export default async function Page() {
   const rules = await getRules(), latest = rules[0], faq = zakatFaq(latest);
   const z = latest.zakat;
   return (<main className="wrap"><section className="block">
-    <h1 style={{ fontFamily: "var(--serif)", marginBottom: 8 }}>Zakat calculator</h1>
+    <h1 className="pagetitle">Zakat calculator</h1>
     <p className="sub">Add your zakatable assets, subtract debts. If the net reaches nisab ({z ? rs(z.nisab) : ""}, {z?.zakatYear}), Zakat is {z?.ratePct}%.</p>
     <ZakatCalculator rulesets={rules} />
     <Sources r={latest} />

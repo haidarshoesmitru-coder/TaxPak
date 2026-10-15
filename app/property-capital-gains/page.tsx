@@ -15,7 +15,7 @@ export default async function Page() {
   const rules = await getRules(), latest = rules[0], faq = propertyFaq(latest);
   const pg = latest.propertyGains;
   return (<main className="wrap"><section className="block">
-    <h1 style={{ fontFamily: "var(--serif)", marginBottom: 8 }}>Property capital gains tax calculator</h1>
+    <h1 className="pagetitle">Property capital gains tax calculator</h1>
     <p className="sub">Selling a plot, house or flat? Enter purchase and sale prices. Properties bought on or after 1 July 2024 pay a flat 15% (ATL); older ones use the holding-period table.</p>
     <PropertyGainsCalculator rulesets={rules} />
     {pg && <>

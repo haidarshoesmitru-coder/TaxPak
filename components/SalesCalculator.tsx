@@ -5,6 +5,7 @@ import { salesTax } from "@/lib/engine";
 import { rs2 } from "@/lib/format";
 import Seg from "./Seg";
 import FySelect from "./FySelect";
+import ShareButtons from "./ShareButtons";
 
 export default function SalesCalculator({ rulesets }: { rulesets: RuleSet[] }) {
   const [fy, setFy] = useState(rulesets[0].fy);
@@ -27,7 +28,17 @@ export default function SalesCalculator({ rulesets }: { rulesets: RuleSet[] }) {
       {res && <div className="res" aria-live="polite"><div className="kpis">
         <div className="kpi"><small>Total</small><b>{rs2(res.total)}</b></div>
         <div className="kpi"><small>Sales tax</small><b>{rs2(res.tax)}</b></div>
-        <div className="kpi"><small>Price before tax</small><b>{rs2(res.base)}</b></div></div></div>}
+        <div className="kpi"><small>Price before tax</small><b>{rs2(res.base)}</b></div></div>
+        <ShareButtons
+          title={`🧾 My GST Breakdown (FY ${rules.fy})`}
+          lines={[
+            `▫️ Price before tax: ${rs2(res.base)}`,
+            `▫️ GST (${rateStr}%): ${rs2(res.tax)}`,
+            `▫️ Total payable: ${rs2(res.total)}`,
+          ]}
+          url="https://tax-pak.vercel.app/sales-tax-calculator"
+        />
+      </div>}
     </div>
   );
 }

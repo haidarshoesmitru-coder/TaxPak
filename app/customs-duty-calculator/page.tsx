@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   const rules = await getRules();
   return (<main className="wrap"><section className="block">
-    <h1 style={{ fontFamily: "var(--serif)", marginBottom: 8 }}>Customs duty and landed cost calculator</h1>
+    <h1 className="pagetitle">Customs duty and landed cost calculator</h1>
     <p className="sub">An estimate only. Final assessment is by Pakistan Customs under the item&rsquo;s HS code.</p>
     <CustomsCalculator rulesets={rules} /><Sources r={rules[0]} />
   </section></main>);

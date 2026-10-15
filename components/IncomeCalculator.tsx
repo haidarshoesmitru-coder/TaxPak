@@ -5,6 +5,7 @@ import { incomeTax } from "@/lib/engine";
 import { rs, pct } from "@/lib/format";
 import Seg from "./Seg";
 import FySelect from "./FySelect";
+import ShareButtons from "./ShareButtons";
 
 export default function IncomeCalculator({ rulesets }: { rulesets: RuleSet[] }) {
   const [fy, setFy] = useState(rulesets[0].fy);
@@ -32,6 +33,15 @@ export default function IncomeCalculator({ rulesets }: { rulesets: RuleSet[] }) 
         <div className="tbl"><table><thead><tr><th>Slice</th><th>Rate</th><th className="n">Amount</th><th className="n">Tax</th></tr></thead><tbody>
           {res.rows.map((r, i) => <tr key={i}><td>{rs(r.from)} to {r.to === null ? "above" : rs(r.to)}</td><td>{pct(r.rate)}</td><td className="n">{rs(r.amount)}</td><td className="n">{rs(r.tax)}</td></tr>)}
         </tbody></table></div>
+        <ShareButtons
+          title={`📊 My Salary Tax Breakdown (FY ${rules.fy})`}
+          lines={[
+            `▫️ ${mode === "monthly" ? "Monthly" : "Annual"} Salary: ${rs(mode === "monthly" ? n : n / 12)}`,
+            `▫️ ${mode === "monthly" ? "Monthly" : "Annual"} Income Tax: ${rs(mode === "monthly" ? res.monthly : res.total)}`,
+            `▫️ Net Take-Home (${mode === "monthly" ? "monthly" : "annual"}): ${rs(mode === "monthly" ? res.takeHomeMonthly : res.takeHomeMonthly * 12)}`,
+          ]}
+          url="https://tax-pak.vercel.app/income-tax-calculator"
+        />
       </div>}
     </div>
   );

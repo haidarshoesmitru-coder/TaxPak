@@ -16,7 +16,7 @@ export default async function Page() {
   const rules = await getRules(), latest = rules[0], faq = whtFaq(latest);
   const rows = latest.withholding?.rows ?? [];
   return (<main className="wrap"><section className="block">
-    <h1 style={{ fontFamily: "var(--serif)", marginBottom: 8 }}>Filer vs non-filer withholding tax rates</h1>
+    <h1 className="pagetitle">Filer vs non-filer withholding tax rates</h1>
     <p className="sub">Pakistan taxes the same transaction at two rates: lower for ATL filers, often double for non-filers. Pick a transaction, enter the amount, and see both sides instantly. Rates for FY {latest.fy}.</p>
     <WhtCalculator rulesets={rules} />
     <h2 style={{ marginTop: 40 }}>Full rate table — FY {latest.fy}</h2>

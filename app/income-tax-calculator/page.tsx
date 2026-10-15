@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   const rules = await getRules(), latest = rules[0], faq = incomeFaq(latest);
   return (<main className="wrap"><section className="block">
-    <h1 style={{ fontFamily: "var(--serif)", marginBottom: 8 }}>Salary income tax calculator, Pakistan</h1>
+    <h1 className="pagetitle">Salary income tax calculator, Pakistan</h1>
     <p className="sub">Salaried individuals only. Based on the {latest.actName}.</p>
     <IncomeCalculator rulesets={rules} />
     <h2 style={{ marginTop: 40 }}>Slabs for FY {latest.fy}</h2><div className="card" style={{ marginTop: 12 }}><SlabTable r={latest} /></div>
